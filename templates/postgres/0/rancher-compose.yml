@@ -1,0 +1,38 @@
+version: '2'
+catalog:
+  name: "Postgres"
+  version: "v0.0.2"
+  description: "PostgreSQL"
+  uuid: postgres-0
+  minimum_rancher_version: "v1.2.0"
+  questions:
+  - variable: "HOST_LABELS"
+    label: "Schedule Postgres MASTER service on hosts with the following host labels"
+    description: "Comma separated list of host labels (e.g. key1=value1, key2=value2) to be used for scheduling"
+    default: "db_master=yes"
+    type: "string"
+    required: true
+  - variable: "BACKUP_LABELS"
+    label: "Schedule Postgres REPLICA/BACKUP service on hosts with the following host labels"
+    description: "Comma separated list of host labels (e.g. key1=value1, key2=value2) to be used for scheduling"
+    default: "db_replica=yes"
+    type: "string"
+    required: true
+  - variable: "POSTGRES_USER"
+    description: "Postgres User"
+    label: "Postgres User"
+    required: true
+    default: "postgres"
+    type: "string"
+  - variable: "POSTGRES_PASSWORD"
+    description: "Postgres Password"
+    label: "Postgres Password"
+    required: true
+    default: "postgres_password"
+    type: "password"
+  - variable: "TZ"
+    label: "Time zone"
+    description: "Time zone"
+    default: "Europe/Bucharest"
+    required: true
+    type: "string"
