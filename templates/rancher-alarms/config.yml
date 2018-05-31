@@ -1,0 +1,8 @@
+name: "Rancher Alarms"
+description: "Send notifications when something goes wrong in rancher"
+version: "1.0"
+category: "Supervision"
+maintainer: "EDW"
+license: "GPLv3"
+projectURL: https://github.com/eea/rancher-alarms/
+
