@@ -161,7 +161,6 @@ services:
             io.rancher.scheduler.global: 'true'
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.start_once: false
-        network_mode: none
         image: rawmind/alpine-sysctl:0.1
         privileged: true
         environment:
