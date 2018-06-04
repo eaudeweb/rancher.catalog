@@ -156,7 +156,6 @@ services:
             - "xpack.graph.enabled=false"
             - "xpack.watcher.enabled=false"
 
-    {{- if eq .Values.UPDATE_SYSCTL "true" }}
     es-sysctl:
         labels:
             io.rancher.scheduler.global: 'true'
@@ -169,4 +168,3 @@ services:
             - "SYSCTL_KEY=vm.max_map_count"
             - "SYSCTL_VALUE=262144"
             - "KEEP_ALIVE=1"
-    {{- end}}
