@@ -18,32 +18,18 @@ catalog:
           type: "string"
           required: true
           default: elastic=yes
-        - variable: "UPDATE_SYSCTL"
-          label: "Update host sysctl:"
-          description: |
-            Set true to avoid vm.max_map_count errors. ES will not start without vm.max_map_count updated.
-            WARN: If set true, host param vm.max_map_count will be update to 262144.
-          default: false
-          required: true
-          type: enum
-          options:
-            - false
-            - true
         - variable: "ES_CLIENT_PORT"
           label: "ElasticSearch client exposed port"
           description: "Empty if you don't want the ES interface exposed on the server"
           type: "int"
-          default: 9200
         - variable: "CEREBRO_PORT"
           label: "Cerebro client exposed port"
           description: "Empty if you don't want the Cerebro web site exposed on the server"
           type: "int"
-          default: 9000
         - variable: "KIBANA_PORT"
           label: "Kibana client exposed port"
           description: "Empty if you don't want the Kibana web interface exposed on the server"
           type: "int"
-          default: 5601
         - variable: "master_heap_size"
           type: "string"
           required: true
