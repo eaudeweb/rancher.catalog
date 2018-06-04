@@ -152,6 +152,10 @@ services:
             - "xpack.ml.enabled=false"
             - "xpack.graph.enabled=false"
             - "xpack.watcher.enabled=false"
+            - XPACK_GRAPH_ENABLED=false
+            - XPACK_MONITORING_ENABLED=false
+            - XPACK_REPORTING_ENABLED=false
+            - XPACK_SECURITY_ENABLED=false
 
     es-sysctl:
         labels:
