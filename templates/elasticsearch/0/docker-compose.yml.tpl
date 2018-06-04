@@ -82,14 +82,12 @@ services:
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
-            - "KIBANA_HOSTNAME=kibana"
             - "bootstrap.memory_lock=true"
             - "discovery.zen.ping.unicast.hosts=es-master"
             - "ES_JAVA_OPTS=-Xms${client_heap_size} -Xmx${client_heap_size}"
             - "node.master=false"
             - "node.data=false"
             - "http.enabled=true"
-            - "ENABLE_READONLY_REST=${ENABLE_READONLY_REST}"
             - "TZ=${TZ}"
             - xpack.security.enabled=false
             - xpack.monitoring.enabled=false
@@ -147,7 +145,7 @@ services:
           io.rancher.scheduler.affinity:host_label: ${host_labels}
 
     kibana:
-        image: docker.elastic.co/elasticsearch/kibana:5.6.9
+        image: docker.elastic.co/kibana/kibana:5.6.9
         depends_on:
             - es_client
        {{- if (.Values.KIBANA_PORT)}}
