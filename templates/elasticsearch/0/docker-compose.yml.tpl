@@ -1,4 +1,8 @@
 version: '2'
+volumes:
+    es-data:
+        driver: local
+        per_container: true
 services:
     es-master:
         labels:
@@ -117,21 +121,6 @@ services:
         depends_on:
             - es-master
 
-    {{- if eq .Values.UPDATE_SYSCTL "true" }}
-    es-sysctl:
-        labels:
-            io.rancher.scheduler.global: 'true'
-            io.rancher.scheduler.affinity:host_label: ${host_labels}
-            io.rancher.container.start_once: false
-        network_mode: none
-        image: rawmind/alpine-sysctl:0.1
-        privileged: true
-        environment:
-            - "SYSCTL_KEY=vm.max_map_count"
-            - "SYSCTL_VALUE=262144"
-            - "KEEP_ALIVE=1"
-    {{- end}}
-
     cerebro:
         image: eeacms/cerebro:0.7.3 
         depends_on:
@@ -167,9 +156,17 @@ services:
             - "xpack.graph.enabled=false"
             - "xpack.watcher.enabled=false"
 
-
-volumes:
-  es-data:
-    driver: local
-    per_container: true
-
+    {{- if eq .Values.UPDATE_SYSCTL "true" }}
+    es-sysctl:
+        labels:
+            io.rancher.scheduler.global: 'true'
+            io.rancher.scheduler.affinity:host_label: ${host_labels}
+            io.rancher.container.start_once: false
+        network_mode: none
+        image: rawmind/alpine-sysctl:0.1
+        privileged: true
+        environment:
+            - "SYSCTL_KEY=vm.max_map_count"
+            - "SYSCTL_VALUE=262144"
+            - "KEEP_ALIVE=1"
+    {{- end}}
