@@ -141,16 +141,11 @@ services:
        {{- end}}
         environment:
             - CER_ES_URL=http://es-client:9200
-            {{- if eq .Values.ENABLE_READONLY_REST "true" }}
-            - CER_ES_USER=${RW_USER}
-            - CER_ES_PASSWORD=${RW_PASSWORD}
-            {{- end}}
             - "TZ=${TZ}"
         labels:
           io.rancher.container.hostname_override: container_name
           io.rancher.scheduler.affinity:host_label: ${host_labels}
 
-   
     kibana:
         image: docker.elastic.co/elasticsearch/kibana:5.6.9
         depends_on:
