@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 services:
   master:
     image: eeacms/postgres:9.6-3.2
