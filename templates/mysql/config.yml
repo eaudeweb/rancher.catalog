@@ -1,0 +1,7 @@
+name: MySQL server
+description: |
+  MySQL — an open-source relational database management system (RDBMS)
+version: v0.0.1
+category: Databases
+maintainer: "EDW"
+license: "GPLv3"

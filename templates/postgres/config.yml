@@ -6,4 +6,3 @@ version: "1.0"
 category: "Databases"
 maintainer: "EDW"
 license: "GPLv3"
-projectURL: https://github.com/eea/rancher-alarms/
