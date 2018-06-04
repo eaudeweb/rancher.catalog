@@ -1,7 +1,7 @@
 version: '2'
 volumes:
   mysql-data:
-    driver:local
+    driver: local
 services:
   mysql:
     image: ${mysql_image}
