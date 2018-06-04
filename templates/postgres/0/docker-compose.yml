@@ -1,4 +1,4 @@
-version: "2.1"
+version: "2"
 services:
   master:
     image: eeacms/postgres:9.6-3.2
@@ -14,12 +14,6 @@ services:
       POSTGRES_CONFIG_hot_standby: "on"
     volumes:
     - master-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER"]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-
 
   replica:
     image: eeacms/postgres:9.6-3.2
