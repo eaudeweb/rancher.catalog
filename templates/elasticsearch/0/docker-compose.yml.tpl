@@ -9,7 +9,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
             io.rancher.scheduler.affinity:host_label: ${host_labels}
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+        image: elasticsearch:5.6.9
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -21,11 +21,6 @@ services:
             - "node.data=false"
             - "http.enabled=false"
             - "TZ=${TZ}"
-            - xpack.security.enabled=false
-            - xpack.monitoring.enabled=false
-            - xpack.ml.enabled=false
-            - xpack.graph.enabled=false
-            - xpack.watcher.enabled=false
         ulimits:
             memlock:
                 soft: -1
@@ -45,7 +40,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.hostname_override: container_name
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+        image: elasticsearch:5.6.9
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -56,11 +51,6 @@ services:
             - "node.data=true"
             - "http.enabled=false"
             - "TZ=${TZ}"
-            - xpack.security.enabled=false
-            - xpack.monitoring.enabled=false
-            - xpack.ml.enabled=false
-            - xpack.graph.enabled=false
-            - xpack.watcher.enabled=false
         ulimits:
             memlock:
                 soft: -1
@@ -82,7 +72,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.hostname_override: container_name
-        image: docker.elastic.co/elasticsearch/elasticsearch:5.6.9
+        image: elasticsearch:5.6.9
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -93,11 +83,6 @@ services:
             - "node.data=false"
             - "http.enabled=true"
             - "TZ=${TZ}"
-            - xpack.security.enabled=false
-            - xpack.monitoring.enabled=false
-            - xpack.ml.enabled=false
-            - xpack.graph.enabled=false
-            - xpack.watcher.enabled=false
     {{- if (.Values.ES_CLIENT_PORT)}}
         ports:
             - "${ES_CLIENT_PORT}:9200"
@@ -134,7 +119,7 @@ services:
           io.rancher.scheduler.affinity:host_label: ${host_labels}
 
     kibana:
-        image: docker.elastic.co/kibana/kibana:5.6.9
+        image: kibana:5.6.9
         depends_on:
             - es_client
        {{- if (.Values.KIBANA_PORT)}}
@@ -147,11 +132,6 @@ services:
         environment:
             - ELASTICSEARCH_URL=http://es-client:9200
             - "TZ=${TZ}"
-            - "xpack.security.enabled=false"
-            - "xpack.monitoring.enabled=false"
-            - "xpack.ml.enabled=false"
-            - "xpack.graph.enabled=false"
-            - "xpack.watcher.enabled=false"
 
     es-sysctl:
         labels:
