@@ -21,7 +21,6 @@ services:
             - "node.data=false"
             - "http.enabled=false"
             - "TZ=${TZ}"
-            - "index.number_of_replicas=2"
             - xpack.security.enabled=false
             - xpack.monitoring.enabled=false
             - xpack.ml.enabled=false
@@ -52,7 +51,6 @@ services:
             - "node.name=$${HOSTNAME}"
             - "bootstrap.memory_lock=true"
             - "discovery.zen.ping.unicast.hosts=es-master"
-            - "index.number_of_replicas=2"
             - "ES_JAVA_OPTS=-Xms${data_heap_size} -Xmx${data_heap_size}"
             - "node.master=false"
             - "node.data=true"
@@ -93,7 +91,6 @@ services:
             - "ES_JAVA_OPTS=-Xms${client_heap_size} -Xmx${client_heap_size}"
             - "node.master=false"
             - "node.data=false"
-            - "index.number_of_replicas=2"
             - "http.enabled=true"
             - "TZ=${TZ}"
             - xpack.security.enabled=false
@@ -162,6 +159,7 @@ services:
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.start_once: false
         image: rawmind/alpine-sysctl:0.1
+        network_mode: none
         privileged: true
         environment:
             - "SYSCTL_KEY=vm.max_map_count"
