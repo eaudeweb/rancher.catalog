@@ -121,7 +121,7 @@ services:
     cerebro:
         image: eeacms/cerebro:0.7.3 
         depends_on:
-            - es_client
+            - es-client
        {{- if (.Values.CEREBRO_PORT)}}
         ports:
             - "${CEREBRO_PORT}:9000"
@@ -136,7 +136,7 @@ services:
     kibana:
         image: docker.elastic.co/kibana/kibana:5.6.9
         depends_on:
-            - es_client
+            - es-client
        {{- if (.Values.KIBANA_PORT)}}
         ports:
             - "${KIBANA_PORT}:5601"
@@ -156,6 +156,17 @@ services:
             - XPACK_MONITORING_ENABLED=false
             - XPACK_REPORTING_ENABLED=false
             - XPACK_SECURITY_ENABLED=false
+
+    cluster-health:
+        image: valentinab25/docker.es.checker
+        depends_on:
+            - es-client
+        labels:
+          io.rancher.container.hostname_override: container_name
+          io.rancher.scheduler.affinity:host_label: ${host_labels}
+        environment:
+          ES_URL=http://es-client:9200
+
 
     es-sysctl:
         labels:
