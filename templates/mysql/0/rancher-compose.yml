@@ -81,6 +81,7 @@ services:
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
+      initializing_timeout: 10000
       port: 3306
       unhealthy_threshold: 3
       interval: 2000

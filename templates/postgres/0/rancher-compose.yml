@@ -36,3 +36,29 @@ catalog:
     default: "Europe/Bucharest"
     required: true
     type: "string"
+
+services:
+  master:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      initializing_timeout: 10000
+      port: 3306
+      unhealthy_threshold: 3
+      interval: 2000
+      strategy: recreate
+  replica:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      initializing_timeout: 10000
+      port: 3306
+      unhealthy_threshold: 3
+      interval: 2000
+      strategy: recreate
+
+
