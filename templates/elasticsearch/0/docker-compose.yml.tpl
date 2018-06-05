@@ -165,8 +165,8 @@ services:
           io.rancher.container.hostname_override: container_name
           io.rancher.scheduler.affinity:host_label: ${host_labels}
         environment:
-          ES_URL=http://es-client:9200
-
+            - ES_URL=http://es-client:9200
+            - PORT=12345
 
     es-sysctl:
         labels:
