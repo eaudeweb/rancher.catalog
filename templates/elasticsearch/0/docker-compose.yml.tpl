@@ -158,7 +158,7 @@ services:
             - XPACK_SECURITY_ENABLED=false
 
     cluster-health:
-        image: valentinab25/docker.es.checker
+        image: eeacms/esclusterhealth
         depends_on:
             - es-client
         labels:

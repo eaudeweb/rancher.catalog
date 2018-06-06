@@ -44,8 +44,8 @@ services:
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
-      initializing_timeout: 10000
-      port: 3306
+      initializing_timeout: 30000
+      port: 5432
       unhealthy_threshold: 3
       interval: 2000
       strategy: recreate
@@ -55,8 +55,8 @@ services:
     health_check:
       healthy_threshold: 2
       response_timeout: 2000
-      initializing_timeout: 10000
-      port: 3306
+      initializing_timeout: 30000
+      port: 5432
       unhealthy_threshold: 3
       interval: 2000
       strategy: recreate
