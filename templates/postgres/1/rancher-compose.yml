@@ -12,12 +12,6 @@ catalog:
     default: "db_master=yes"
     type: "string"
     required: true
-  - variable: "BACKUP_LABELS"
-    label: "Schedule Postgres REPLICA/BACKUP service on hosts with the following host labels"
-    description: "Comma separated list of host labels (e.g. key1=value1, key2=value2) to be used for scheduling"
-    default: "db_replica=yes"
-    type: "string"
-    required: true
   - variable: "POSTGRES_USER"
     description: "Postgres User"
     label: "Postgres User"
@@ -38,18 +32,7 @@ catalog:
     type: "string"
 
 services:
-  master:
-    scale: 1
-    start_on_create: true
-    health_check:
-      healthy_threshold: 2
-      response_timeout: 2000
-      initializing_timeout: 30000
-      port: 5432
-      unhealthy_threshold: 3
-      interval: 2000
-      strategy: recreate
-  replica:
+  postgres:
     scale: 1
     start_on_create: true
     health_check:

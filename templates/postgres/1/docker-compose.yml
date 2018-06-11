@@ -1,41 +1,17 @@
 version: "2"
 services:
-  master:
-    image: eeacms/postgres:9.6-3.2
+  postgres:
+    image: postgres:10.4
     labels:
       io.rancher.container.hostname_override: container_name
       io.rancher.scheduler.affinity:host_label: ${HOST_LABELS}
     environment:
       POSTGRES_USER: "${POSTGRES_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_CONFIG_wal_level: "hot_standby"
-      POSTGRES_CONFIG_max_wal_senders: "8"
-      POSTGRES_CONFIG_wal_keep_segments: "8"
-      POSTGRES_CONFIG_hot_standby: "on"
     volumes:
-    - master-data:/var/lib/postgresql/data
-
-  replica:
-    image: eeacms/postgres:9.6-3.2
-    labels:
-      io.rancher.container.hostname_override: container_name
-      io.rancher.scheduler.affinity:host_label: ${BACKUP_LABELS}
-    depends_on:
-    - master
-    environment:
-      POSTGRES_USER: "${POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_CONFIG_wal_level: "hot_standby"
-      POSTGRES_CONFIG_max_wal_senders: "8"
-      POSTGRES_CONFIG_wal_keep_segments: "8"
-      POSTGRES_CONFIG_hot_standby: "on"
-      POSTGRES_REPLICATE_FROM: "master"
-    volumes:
-    - replica-data:/var/lib/postgresql/data
+    - postgres-data:/var/lib/postgresql/data
 
 
 volumes:
-  master-data:
-    driver: local
-  replica-data:
+  postgres-data:
     driver: local
