@@ -1,6 +1,6 @@
-name: "PostgreSQL cluster"
+name: "PostgreSQL"
 description: " |
-  PostgreSQL — an object-relational database (ORDBMS) master-replica cluster
+  PostgreSQL — an object-relational database (ORDBMS) 
 "
 version: "2.0"
 category: "Databases"
