@@ -1,9 +1,9 @@
 version: '2'
 catalog:
     name: Elasticsearch
-    version: 6.2.4-1.0
+    version: 6.3.0-1.0
     description: Elasticsearch cluster
-    uuid: elasticsearch-1
+    uuid: elasticsearch-2
 
     questions:
         - variable: "cluster_name"

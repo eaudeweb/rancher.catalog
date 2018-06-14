@@ -9,7 +9,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.container.hostname_override: container_name
             io.rancher.scheduler.affinity:host_label: ${host_labels}
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.0
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -40,7 +40,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.hostname_override: container_name
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.0
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -72,7 +72,7 @@ services:
             io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
             io.rancher.scheduler.affinity:host_label: ${host_labels}
             io.rancher.container.hostname_override: container_name
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.3.0
         environment:
             - "cluster.name=${cluster_name}"
             - "node.name=$${HOSTNAME}"
@@ -119,7 +119,7 @@ services:
           io.rancher.scheduler.affinity:host_label: ${host_labels}
 
     kibana:
-        image: docker.elastic.co/kibana/kibana-oss:6.2.4
+        image: docker.elastic.co/kibana/kibana-oss:6.3.0
         depends_on:
             - es-client
        {{- if (.Values.KIBANA_PORT)}}
